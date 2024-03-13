@@ -11,6 +11,7 @@ export default createStore({
     accessToken: "",
     refreshIndex: "",
     isLoggedIn: false,
+    userSummoner: "",
   },
   // 상태를 가져오는 getter를 정의합니다.
   getters: {
@@ -34,6 +35,9 @@ export default createStore({
     },
     setIsLoggedIn: function (state, value) {
       state.isLoggedIn = value;
+    },
+    setUserSummoner: function (state, value) {
+      state.userSummoner = value;
     },
   },
   // 비동기 로직을 수행하는 action을 정의합니다.

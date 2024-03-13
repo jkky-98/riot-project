@@ -1,11 +1,115 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
-
-class RefreshToken(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    refresh_token = models.CharField(max_length=1000)
 
 class ModelRefreshToken(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     refresh_token = models.CharField(max_length=1000)
+
+class UserRiot(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
+    riot_id = models.CharField(max_length=1000, default="")
+    riot_puuid = models.CharField(max_length=1000, default="")
+    revision_date = models.CharField(max_length=1000, default="")
+    summonerLevel = models.IntegerField(default=0)
+    profileIconId = models.IntegerField(default=0)
+    name = models.CharField(max_length=1000, default="")
+
+
+class UserMatch(models.Model):
+    # 'metadata'
+    dataVersion = models.CharField(max_length=1000, default="")
+    match_id = models.CharField(max_length=1000, default="")
+
+    # 'info'
+    endofGameResult = models.CharField(max_length=1000, default="")
+    gameCreation = models.CharField(max_length=1000, default="")
+    gameDuration = models.CharField(max_length=1000, default="")
+    gameEndTimestamp = models.CharField(max_length=1000, default="")
+    gameId = models.CharField(max_length=1000, default="")
+    gameMode = models.CharField(max_length=1000, default="")
+    gameName = models.CharField(max_length=1000, default="")
+    mapId = models.CharField(max_length=1000, default="")
+
+class Participant(models.Model):
+    user_match = models.ForeignKey(UserMatch, on_delete=models.CASCADE)
+    assists = models.IntegerField(default=0)
+    bountyGold = models.IntegerField(default=0)
+    controlWardsPlaced = models.IntegerField(default=0)
+    damagePerMinute = models.FloatField(default=0)
+    damageTakenOnTeamPercentage = models.FloatField(default=0)
+    deathsByEnemyChamps = models.IntegerField(default=0)
+    earlyLaningPhaseGoldExpAdvantage = models.IntegerField(default=0)
+    epicMonsterKillsNearEnemyJungler = models.IntegerField(default=0)
+    epicMonsterSteals = models.IntegerField(default=0)
+    epicMonsterStolenWithoutSmite = models.IntegerField(default=0)
+    firstTurretKilled = models.BooleanField(default=False)
+    firstTurretKilledTime = models.FloatField(default=0)
+    gameLength = models.FloatField(default=0)
+    goldPerMinute = models.FloatField(default=0)
+    immobilizeAndKillWithAlly = models.IntegerField(default=0)
+    initialBuffCount = models.IntegerField(default=0)
+    initialCrabCount = models.IntegerField(default=0)
+    jungleCsBefore10Minutes = models.IntegerField(default=0)
+    kTurretsDestroyedBeforePlatesFall = models.IntegerField(default=0)
+    kda = models.FloatField(default=0)
+    killAfterHiddenWithAlly = models.IntegerField(default=0)
+    killParticipation = models.FloatField(default=0)
+    killingSprees = models.IntegerField(default=0)
+    killsNearEnemyTurret = models.IntegerField(default=0)
+    killsOnOtherLanesEarlyJungleAsLaner = models.IntegerField(default=0)
+    killsUnderOwnTurret = models.IntegerField(default=0)
+    knockEnemyIntoTeamAndKill = models.IntegerField(default=0)
+    laneMinionsFirst10Minutes = models.IntegerField(default=0)
+    laningPhaseGoldExpAdvantage = models.IntegerField(default=0)
+    legendaryCount = models.IntegerField(default=0)
+    maxCsAdvantageOnLaneOpponent = models.IntegerField(default=0)
+    maxLevelLeadLaneOpponent = models.IntegerField(default=0)
+    moreEnemyJungleThanOpponent = models.FloatField(default=0)
+    multikills = models.IntegerField(default=0)
+    multikillsAfterAggressiveFlash = models.IntegerField(default=0)
+    outerTurretExecutesBefore10Minutes = models.IntegerField(default=0)
+    outnumberedKills = models.IntegerField(default=0)
+    scuttleCrabKills = models.IntegerField(default=0)
+    skillshotsDodged = models.IntegerField(default=0)
+    soloKills = models.IntegerField(default=0)
+    stealthWardsPlaced = models.IntegerField(default=0)
+    takedownOnFirstTurret = models.IntegerField(default=0)
+    takedowns = models.IntegerField(default=0)
+    takedownsFirstXMinutes = models.IntegerField(default=0)
+    teamDamagePercentage = models.FloatField(default=0)
+    teleportTakedowns = models.IntegerField(default=0)
+    turretPlatesTaken = models.IntegerField(default=0)
+    turretTakedowns = models.IntegerField(default=0)
+    visionScorePerMinute = models.FloatField(default=0)
+    wardTakedowns = models.IntegerField(default=0)
+    wardTakedownsBefore20M = models.IntegerField(default=0)
+    wardsGuarded = models.IntegerField(default=0)
+    championName = models.CharField(max_length=1000, default="")
+    detectorWardsPlaced = models.IntegerField(default=0)
+    deaths = models.IntegerField(default=0)
+    doubleKills = models.IntegerField(default=0)
+    kills = models.IntegerField(default=0)
+    puuid = models.CharField(max_length=1000, default="")
+    timePlayed = models.FloatField(default=0)
+    tripleKills = models.IntegerField(default=0)
+    totalDamageDealt = models.IntegerField(default=0)
+    totalDamageDealtToChampions = models.IntegerField(default=0)
+    totalDamageTaken = models.IntegerField(default=0)
+    win = models.BooleanField(default=False)
+    teamId = models.IntegerField(default=0)
+    teamPosition = models.CharField(max_length=1000, default="")
+    participantId = models.IntegerField(default=0)
+    champExperience = models.IntegerField(default=0)
+    champLevel = models.IntegerField(default=0)
+    championId = models.IntegerField(default=0)
+    # 'stats made by me
+    
+    dpt = models.FloatField(default=0)
+    dpg = models.FloatField(default=0)
+    ddpt = models.FloatField(default=0)
+    dgpt = models.FloatField(default=0)
+    
+
+    

@@ -20,10 +20,12 @@
         <div>
           <div class="text-h6 mb-1">회원정보</div>
           <div class="text-h6">ID : {{ userId }}</div>
+          <div class="text-h6">계정연동 :{{ userSummoner }}</div>
         </div>
       </v-card-item>
 
       <v-card-actions>
+        <riot-register />
         <v-btn @click="Logout"> Logout </v-btn>
       </v-card-actions>
     </v-card>
@@ -35,13 +37,15 @@
 <script>
 import { mapState } from "vuex";
 import axiosInstance from "../setaxios.js";
+import RiotRegister from "./RiotRegister.vue";
+
 export default {
   name: "NavigationBar",
   data: () => ({
     drawer: false,
   }),
   computed: {
-    ...mapState(["userId"]),
+    ...mapState(["userId", "userSummoner"]),
   },
   methods: {
     Logout() {
@@ -70,11 +74,15 @@ export default {
           this.$store.commit("setAccessToken", "");
           this.$store.commit("setRefreshIndex", "");
           this.$store.commit("setIsLoggedIn", false);
+          this.$store.commit("setUserSummoner", "");
         })
         .catch((err) => {
           console.log(err);
         });
     },
+  },
+  components: {
+    RiotRegister,
   },
 };
 </script>
