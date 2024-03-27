@@ -12,11 +12,17 @@ export default createStore({
     refreshIndex: "",
     isLoggedIn: false,
     userSummoner: "",
+    summonerProfile: {},
+    championUsed: {},
+    matchData: {},
   },
   // 상태를 가져오는 getter를 정의합니다.
   getters: {
     getPopState: function (state) {
       return state.popStateSignin;
+    },
+    getisLoggedIn: function (state) {
+      return state.isLoggedIn;
     },
   },
   // 상태를 변경하는 mutation을 정의합니다.
@@ -38,6 +44,18 @@ export default createStore({
     },
     setUserSummoner: function (state, value) {
       state.userSummoner = value;
+    },
+    setSummonerProfile: function (state, value) {
+      state.summonerProfile = value;
+    },
+    setChampionUsed(state, championUsed) {
+      // total을 기준으로 정렬
+      const dataArray = Object.entries(championUsed);
+      dataArray.sort((a, b) => b[1].total - a[1].total);
+      state.championUsed = dataArray;
+    },
+    setMatchData(state, matchData) {
+      state.matchData = matchData;
     },
   },
   // 비동기 로직을 수행하는 action을 정의합니다.

@@ -8,14 +8,14 @@
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" app color="#26293C">
     <v-list-item>
-      <v-list-item-title class="text-h4 white--text">
-        Consulting
+      <v-list-item-title class="text-h5 white--text">
+        Only Solo Rank
       </v-list-item-title>
       <v-list-item-subtitle class="white--text">
-        For College Entrance
+        Hello Summoners!
       </v-list-item-subtitle>
     </v-list-item>
-    <v-card class="mx-auto" max-width="344" color="primary">
+    <v-card class="mx-auto" max-width="344" color="indigo-darken-3">
       <v-card-item>
         <div>
           <div class="text-h6 mb-1">회원정보</div>
@@ -27,6 +27,14 @@
       <v-card-actions>
         <riot-register />
         <v-btn @click="Logout"> Logout </v-btn>
+      </v-card-actions>
+    </v-card>
+    <v-divider thickness="10"></v-divider>
+    <v-card class="mx-auto" max-width="344" color="indigo-darken-3">
+      <v-card-actions>
+        <v-btn @click="$router.push('/mainpage')">
+          Analyze your solo rank!
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-navigation-drawer>

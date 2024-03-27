@@ -16,3 +16,5 @@ export default {
   data: () => ({}),
 };
 </script>
+
+<style></style>

@@ -7,7 +7,12 @@
           fill-height
           class="d-flex justify-center align-center mt-12"
         >
-          <v-layout row wrap class="text-xs-center align-self-center mt-12">
+          <v-layout
+            row
+            wrap
+            class="text-xs-center align-self-center mt-12"
+            v-if="!$store.getters.getisLoggedIn"
+          >
             <v-card
               flat
               class="mx-auto pa-12"

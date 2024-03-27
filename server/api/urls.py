@@ -18,4 +18,6 @@ urlpatterns = [
     path('auth/', views.Auth.as_view(), name='auth'),
     path('summoner/', views.RiotRegisterView.as_view(), name='summoner'),
     path('update/', views.UpdateView.as_view(), name='update'),
+    path('championused/', views.ChampionUsedView.as_view(), name='championused'),
+    path('match_individual/', views.MatchDataIndividual.as_view(), name='match_individual'),
 ]

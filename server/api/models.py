@@ -32,6 +32,8 @@ class UserMatch(models.Model):
     gameName = models.CharField(max_length=1000, default="")
     mapId = models.CharField(max_length=1000, default="")
 
+
+
 class Participant(models.Model):
     user_match = models.ForeignKey(UserMatch, on_delete=models.CASCADE)
     assists = models.IntegerField(default=0)
@@ -105,11 +107,84 @@ class Participant(models.Model):
     champLevel = models.IntegerField(default=0)
     championId = models.IntegerField(default=0)
     # 'stats made by me
-    
     dpt = models.FloatField(default=0)
     dpg = models.FloatField(default=0)
     ddpt = models.FloatField(default=0)
     dgpt = models.FloatField(default=0)
+    totalPings = models.IntegerField(default=0)
+
+    # 추가 3/25
+    item0 = models.IntegerField(default=0)
+    item1 = models.IntegerField(default=0)
+    item2 = models.IntegerField(default=0)
+    item3 = models.IntegerField(default=0)
+    item4 = models.IntegerField(default=0)
+    item5 = models.IntegerField(default=0)
+    item6 = models.IntegerField(default=0)
+    spell1Casts = models.IntegerField(default=0)
+    spell2Casts = models.IntegerField(default=0)
+    spell3Casts = models.IntegerField(default=0)
+    spell4Casts = models.IntegerField(default=0)
+    summoner1Casts = models.IntegerField(default=0)
+    summoner1Id = models.IntegerField(default=0)
+    summoner2Casts = models.IntegerField(default=0)
+    summoner2Id = models.IntegerField(default=0)
     
 
-    
+
+
+class ParticipantCompare(models.Model):
+    # participant랑 1:1 매칭
+    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
+    # percentage
+    damagePerMinuteOppo = models.FloatField(default=0)
+    damagePerMinuteRank = models.IntegerField(default=0)
+    # simple
+    bountyGoldOppo = models.IntegerField(default=0)
+    bountyGoldRank = models.IntegerField(default=0)
+    # percentage
+    dpgOppo = models.FloatField(default=0)
+    dpgRank = models.IntegerField(default=0)
+    # percentage
+    dptOppo = models.FloatField(default=0)
+    dptRank = models.IntegerField(default=0)
+    # simple
+    turretPlatesTakenOppo = models.IntegerField(default=0)
+    turretPlatesTakenRank = models.IntegerField(default=0)
+    # simple, float
+    killsNearTurret = models.FloatField(default=0)
+    killsNearTurretOppo = models.FloatField(default=0)
+    killsNearTurretRank = models.IntegerField(default=0)
+    # simple
+    takedownsFirstXMinutesOppo = models.IntegerField(default=0)
+    takedownsFirstXMinutesRank = models.IntegerField(default=0)
+    # simple
+    laneMinionsFirst10MinutesOppo = models.IntegerField(default=0)
+    laneMinionsFirst10MinutesRank = models.IntegerField(default=0)
+
+    # percentage
+    ddptOppo = models.FloatField(default=0)
+    ddptRank = models.IntegerField(default=0)
+    # percentage
+    dgptOppo = models.FloatField(default=0)
+    dgptRank = models.IntegerField(default=0)
+    # simple
+    killAfterHiddenWithAllyOppo = models.IntegerField(default=0)
+    killAfterHiddenWithAllyRank = models.IntegerField(default=0)
+    # simple
+    outnumberedKillsOppo = models.IntegerField(default=0)
+    outnumberedKillsRank = models.IntegerField(default=0)
+    # simple, float (jungler)
+    moreEnemyJungleThanOpponentOppo = models.FloatField(default=0)
+    moreEnemyJungleThanOpponentRank = models.IntegerField(default=0)
+    # percentage
+    visionScorePerMinuteOppo = models.FloatField(default=0)
+    visionScorePerMinuteRank = models.IntegerField(default=0)
+
+    # TeamPing
+    totalPingsOppo = models.IntegerField(default=0)
+    totalPingsRank = models.IntegerField(default=0)
+
+    # TeamPing
+    myTeamPings = models.IntegerField(default=0)
+    myTeamPingsOppo = models.FloatField(default=0)
